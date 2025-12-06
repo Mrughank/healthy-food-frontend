@@ -1,0 +1,166 @@
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(11, 138, 59, 0.55); 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 10px 25px;
+  height: 70px;
+  position: sticky;
+  top: 0;
+  z-index: 2000;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+/* LOGO */
+.nav-logo {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.nav-logo:hover {
+  transform: scale(1.05);
+}
+
+/* BRAND NAME */
+.logom {
+  font-size: 24px;
+  font-weight: 800;
+  background: linear-gradient(45deg, #ffb800, #00c851);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-left: 10px;
+}
+
+/* CENTER MENU */
+.center-menu {
+  display: flex;
+  gap: 28px;
+  flex: 1;
+  justify-content: center;
+}
+
+.center-menu a {
+  color: white;
+  font-size: 17px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.center-menu a:hover {
+  color: #ffdf70;
+}
+
+/* RIGHT MENU */
+.right-menu {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* USERNAME */
+.username {
+  color: white !important;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* BUTTON COMMON */
+.btn {
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  border: none;
+}
+
+/* BUTTON COLORS */
+.login-btn { background: #e63946; }
+.seller-btn { background: #ff9f1c; }
+.logout { background: #333; }
+
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  font-size: 32px;
+  cursor: pointer;
+  color: white;
+  margin-left: 15px;
+}
+
+/* DRAWER */
+.drawer {
+  position: fixed;
+  top: 70px;
+  left: -100%;
+  width: 260px;
+  height: 100vh;
+  background: #0b8a3b;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  gap: 20px;
+  transition: left 0.3s ease;
+  z-index: 3000;
+}
+
+.drawer.show {
+  left: 0;
+}
+
+.drawer a {
+  color: white;
+  font-size: 18px;
+  padding: 12px 0;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.drawer .btn {
+  width: 100%;
+}
+
+/* RESPONSIVE BREAKPOINTS */
+@media (max-width: 1000px) {
+  .center-menu,
+  .right-menu {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .logom {
+    font-size: 22px;
+  }
+
+  .nav-logo {
+    height: 46px;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    padding: 8px 15px;
+  }
+
+  .nav-logo {
+    height: 42px;
+  }
+
+  .logom {
+    font-size: 20px;
+  }
+}

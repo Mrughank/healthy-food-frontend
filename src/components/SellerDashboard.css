@@ -1,0 +1,253 @@
+/* MAIN FLEX LAYOUT */
+.seller-main-container {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background: #f9fafb;
+}
+
+/* ====================================== */
+/*              FIXED SIDEBAR             */
+/* ====================================== */
+.seller-sidebar {
+  position: fixed;
+  left: 0;
+  top: 70px;
+  width: 250px;
+  height: 100vh;
+  background: #ffffff;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+  padding: 22px;
+  z-index: 20;
+}
+
+.side-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  text-align: center;
+  color: #1f2937;
+}
+
+.side-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.side-menu li,
+.side-menu a {
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  color: #374151;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  background: #f4f4f4;
+  transition: 0.2s;
+}
+
+.side-menu li:hover,
+.side-menu a:hover {
+  background: #e3ffe3;
+  color: green;
+}
+
+.logout-btn {
+  background: #ef4444;
+  color: white;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 25px;
+}
+.logout-btn:hover {
+  background: #dc2626;
+}
+
+/* ====================================== */
+/*              MAIN CONTENT               */
+/* ====================================== */
+.seller-dashboard-content {
+  width: 100%;
+  padding: 25px;
+  margin-left: 270px;
+}
+
+/* Add Food Box */
+.add-food-box {
+  background: white;
+  padding: 20px;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.add-food-box input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+}
+
+.add-food-box button {
+  width: 100%;
+  padding: 12px;
+  background: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+/* ====================================== */
+/*              FOOD GRID                 */
+/* ====================================== */
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.food-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.food-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Buttons inside food card */
+.edit-btn,
+.delete-btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin: 6px; /* 👍 FIXED GAP */
+  font-size: 15px;
+}
+
+.edit-btn {
+  background: #2563eb;
+}
+
+.delete-btn {
+  background: #dc2626;
+}
+
+/* ====================================== */
+/*             EDIT MODAL                 */
+/* ====================================== */
+.edit-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+
+.edit-box {
+  background: #ffffff;
+  width: 360px;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+.edit-box input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  margin-bottom: 12px;
+}
+
+.save-btn,
+.cancel-btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 12px;
+}
+
+.save-btn {
+  background: #16a34a;
+  color: #fff;
+}
+
+.cancel-btn {
+  background: #ef4444;
+  color: #fff;
+}
+
+/* ====================================== */
+/*       RESPONSIVE MOBILE SIDEBAR        */
+/* ====================================== */
+@media (max-width: 900px) {
+  .seller-sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    box-shadow: none;
+    top: 0;
+    left: 0;
+  }
+
+  .seller-dashboard-content {
+    margin-left: 0;
+    padding: 15px;
+  }
+
+  /* FOOD GRID SMALLER */
+  .food-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+}
+.messages-section {
+  margin-top: 40px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.msg-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.msg-table th, .msg-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.msg-table th {
+  background: #0a8f2a;
+  color: white;
+}
+
+.msg-table tr:nth-child(even) {
+  background: #f6f6f6;
+}
+

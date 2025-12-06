@@ -1,0 +1,76 @@
+.seller-orders-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #f4f9f4;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 40px 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+.seller-orders-page h2 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #0b572b;
+  text-align: center;
+}
+
+/* TABLE BOX */
+.orders-table {
+  width: 80%;
+  max-width: 1000px;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* HEADER */
+.orders-table thead {
+  background: #0b572b;
+  color: white;
+  font-size: 18px;
+}
+
+.orders-table th {
+  padding: 15px;
+  text-align: left;
+}
+
+/* ROWS */
+.orders-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid #eee;
+  font-size: 15px;
+}
+
+/* LAST ROW REMOVE BORDER */
+.orders-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* HOVER EFFECT */
+.orders-table tbody tr:hover {
+  background: #f0f9f0;
+  transition: 0.2s;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .orders-table {
+    width: 95%;
+  }
+
+  .orders-table thead {
+    font-size: 16px;
+  }
+
+  .orders-table td,
+  .orders-table th {
+    padding: 10px;
+  }
+}

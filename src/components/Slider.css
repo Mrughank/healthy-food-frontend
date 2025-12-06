@@ -1,0 +1,50 @@
+.slider {
+  width: 100%;
+  height: 60vh;
+  background: url("https://images.unsplash.com/photo-1490645935967-10de6ba17061")
+    center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.slider::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.slider-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+}
+
+.slider-content h1 {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.slider-content p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.menu-btn {
+  padding: 10px 28px;
+  font-size: 16px;
+  background: #0ca95b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.menu-btn:hover {
+  background: #0c8a4f;
+}

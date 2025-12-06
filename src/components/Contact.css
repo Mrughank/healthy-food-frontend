@@ -1,0 +1,88 @@
+.contact-page {
+  padding: 40px;
+  min-height: 90vh;
+  background: linear-gradient(135deg, #fceabb, #f8b500, #c6ffdd);
+  background-size: 200% 200%;
+  animation: gradientMove 6s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: left top; }
+  50% { background-position: right bottom; }
+  100% { background-position: left top; }
+}
+
+.contact-title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #0b3d02;
+}
+
+.contact-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.contact-left,
+.contact-right {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  width: 50%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.contact-right form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-right input,
+.contact-right textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.contact-right textarea {
+  height: 130px;
+  resize: none;
+}
+
+.contact-right button {
+  padding: 12px;
+  background: #00a63f;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.contact-right button:hover {
+  background: #008f36;
+}
+
+.status-box {
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.status-box.success {
+  background: #c9f7d4;
+  color: #0b6a2b;
+}
+
+.status-box.error {
+  background: #ffd6d6;
+  color: #8a0000;
+}

@@ -1,0 +1,20 @@
+.seller-messages-page {
+  padding: 20px;
+}
+
+.messages-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.messages-table th,
+.messages-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.messages-table th {
+  background: #4caf50;
+  color: white;
+}

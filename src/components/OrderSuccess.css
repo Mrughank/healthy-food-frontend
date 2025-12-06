@@ -1,0 +1,74 @@
+/* WRAPPER */
+.placeorder-page {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 30px 15px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* CARD BOX */
+.order-box {
+  width: 100%;
+  max-width: 450px;
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+/* TITLE */
+.order-box h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* ITEMS */
+.order-item {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 12px;
+  margin-bottom: 15px;
+}
+
+.order-item h3 {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.order-item p {
+  margin: 4px 0;
+  color: #555;
+}
+
+/* TOTAL */
+.total-box {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 15px;
+}
+
+/* BUTTON */
+.confirm-btn {
+  width: 100%;
+  margin-top: 20px;
+  background: #00a859;
+  border: none;
+  color: white;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.confirm-btn:hover {
+  background: #008c4c;
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+  .order-box {
+    padding: 18px;
+  }
+}
