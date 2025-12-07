@@ -85,15 +85,27 @@
 
 
 /* ========================================= */
-/*                TABLET FIXES               */
+/* ✅ TABLET / iPAD HERO CENTER FIX */
 /* ========================================= */
-@media (max-width: 992px) {
+
+@media (max-width: 1024px) {
+
+  .home .hero {
+    min-height: 100vh;           /* full screen height */
+    display: flex;
+    align-items: center;        /* ✅ vertical center */
+    justify-content: center;    /* ✅ horizontal center */
+  }
+
   .home .hero-inner {
-    padding-top: 110px;
+    padding-top: 0;             /* ✅ bottom ma jata rokse */
+    padding-bottom: 0;
+    text-align: center;
   }
 
   .home .hero-main-title {
-    font-size: 45px;
+    font-size: 42px;
+    line-height: 1.2;
   }
 
   .home .hero-small-title {
@@ -101,9 +113,16 @@
   }
 
   .home .hero-desc {
-    font-size: 18px;
+    font-size: 17px;
+    max-width: 90%;
+    margin: auto;
+  }
+
+  .home .hero-btn {
+    margin-top: 15px;
   }
 }
+  
 
 
 /* ========================================= */

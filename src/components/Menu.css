@@ -2,8 +2,9 @@
 .menu-page {
   min-height: 100vh;
   padding: 40px 5%;
-  background: #eef7f1;
+ background: linear-gradient(rgba(175, 238, 175, 0.719));
   font-family: "Poppins", sans-serif;
+ 
 }
 
 /* === TITLE === */
@@ -14,6 +15,7 @@
   margin-bottom: 30px;
   color: #2c5f2d;
 }
+
 
 /* === CONTAINER WIDTH FIX (IMPORTANT) === */
 .menu-container {

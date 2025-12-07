@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(11, 138, 59, 0.55); 
+  background: rgba(9, 138, 59, 0.753); 
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding: 10px 25px;
@@ -11,7 +11,7 @@
   position: sticky;
   top: 0;
   z-index: 2000;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* LOGO */
@@ -27,14 +27,14 @@
 }
 
 .nav-logo:hover {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 /* BRAND NAME */
 .logom {
   font-size: 24px;
   font-weight: 800;
-  background: linear-gradient(45deg, #ffb800, #00c851);
+  background: linear-gradient(orange);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-left: 10px;
