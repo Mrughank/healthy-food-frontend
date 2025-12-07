@@ -18,10 +18,10 @@ export default function UserRegister() {
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/user/register`,
         {
-          username,        // ✅ correct field
-          userpassword,    // ✅ correct field
+          username,
+          userpassword,
           email,
-          phone: mobile,   // ✅ backend expects phone
+          phone: mobile,
         }
       );
 
@@ -32,7 +32,7 @@ export default function UserRegister() {
         alert("❌ " + res.data.msg);
       }
     } catch (err) {
-      console.error("Register error:", err?.response?.data || err.message);
+      console.log("Register error:", err.response?.data || err.message);
       alert("⚠️ Server error");
     }
   };
