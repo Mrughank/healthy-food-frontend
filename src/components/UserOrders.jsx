@@ -14,8 +14,8 @@ export default function UserOrders() {
       return navigate("/userLogin");
     }
 
-    axios
-      .get(`http://localhost:9000/order/userOrders/${user._id}`)
+   axios.get(`${import.meta.env.VITE_API_URL}/order/userOrders/${user._id}`)
+
       .then((res) => setOrders(res.data))
       .catch(() => alert("Failed to load orders"));
   }, [user, navigate]);

@@ -14,8 +14,8 @@ export default function UserRegister() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios
-      .post("http://localhost:9000/user/signup", {
+    axios.get(`${import.meta.env.VITE_API_URL}/order/userOrders/${user._id}`,
+       {
         name: username,          // backend expects name
         password: userpassword,  // backend expects password
         email: email,            // same

@@ -17,7 +17,6 @@ export default function Contact() {
       return;
     }
 
-    // email regex
     if (!/^\S+@\S+\.\S+$/.test(email)) {
       setStatus({ type: "error", text: "Invalid email address." });
       return;
@@ -26,12 +25,13 @@ export default function Contact() {
     setLoading(true);
 
     try {
-     const res = await fetch("http://localhost:9000/contact", {
-
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
-      });
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/contact`,    // ✅ ONLY CHANGE
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, message }),
+        }
+      );
 
       const data = await res.json();
 
@@ -49,13 +49,12 @@ export default function Contact() {
 
     setLoading(false);
   };
-
   return (
     <div className="contact-page">
       <h1 className="contact-title">Contact Us</h1>
 
       <div className="contact-wrapper">
-        
+
         <div className="contact-left">
           <h2>Get in touch</h2>
           <p>Prefer email? Write to:</p>

@@ -12,7 +12,8 @@ export default function SellerRegister() {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:9000/seller/register", {
+      const res = await axios.postaxios.post(`${import.meta.env.VITE_API_URL}/seller/register`, data,
+         {
         username,
         userpassword,
       });

@@ -15,7 +15,9 @@ export default function SellerLogin() {
   e.preventDefault();
 
   try {
-    const res = await axios.post("http://localhost:9000/seller/login", {
+    const res = await axios.post(`${import.meta.env.VITE_API_URL}/seller/login`, data,
+
+ {
       username,
       userpassword,
     });

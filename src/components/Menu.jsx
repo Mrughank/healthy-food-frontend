@@ -12,8 +12,8 @@ export default function Menu() {
   const [foods, setFoods] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:9000/seller/food/all")
+    axios.get(`${import.meta.env.VITE_API_URL}/seller/food/all`)
+
       .then((res) => setFoods(res.data))
       .catch((err) => console.log(err));
   }, []);

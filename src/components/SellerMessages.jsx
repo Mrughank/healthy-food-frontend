@@ -6,8 +6,8 @@ export default function SellerMessages() {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:9000/contact/all")
+    axios.get(`${import.meta.env.VITE_API_URL}/contact/all`)
+
       .then((res) => {
         if (res.data.success) {
           setMessages(res.data.messages);

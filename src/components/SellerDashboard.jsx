@@ -31,10 +31,8 @@ export default function SellerDashboard() {
 
   // ---------- FOODS ----------
   const loadFoods = () => {
-    axios
-      .get(`http://localhost:9000/seller/food/list/${seller._id}`)
+    axios.get(`${import.meta.env.VITE_API_URL}/seller/food/list/${seller._id}`)
       .then((res) => {
-        // backend might return array directly or { success:true, foods: [] }
         const data = res.data?.foods || res.data || [];
         setFoods(Array.isArray(data) ? data : []);
       })
@@ -51,11 +49,10 @@ export default function SellerDashboard() {
       return;
     }
 
-    axios
-      .post("http://localhost:9000/seller/food/add", {
-        ...form,
-        sellerId: seller._id,
-      })
+    axios.post(`${import.meta.env.VITE_API_URL}/seller/food/add`, {
+      ...form,
+      sellerId: seller._id,
+    })
       .then(() => {
         loadFoods();
         setForm({ foodsname: "", foodsprice: "", foodsimage: "" });
@@ -68,8 +65,7 @@ export default function SellerDashboard() {
 
   const deleteFood = (id) => {
     if (!window.confirm("Delete this food?")) return;
-    axios
-      .delete(`http://localhost:9000/seller/food/delete/${id}`)
+    axios.delete(`${import.meta.env.VITE_API_URL}/seller/food/delete/${id}`)
       .then(() => loadFoods())
       .catch((err) => {
         console.error("deleteFood err:", err);
@@ -79,8 +75,11 @@ export default function SellerDashboard() {
 
   const updateFood = () => {
     if (!editItem) return;
-    axios
-      .put(`http://localhost:9000/seller/food/update/${editItem._id}`, editItem)
+    axios.put(
+      `${import.meta.env.VITE_API_URL}/seller/food/update/${editItem._id}`,
+      editItem
+    )
+
       .then(() => {
         loadFoods();
         setEditItem(null);
@@ -93,16 +92,14 @@ export default function SellerDashboard() {
 
   // ---------- MESSAGES ----------
   const loadMessages = () => {
-    axios
-      .get("http://localhost:9000/contact")
+    axios.get(`${import.meta.env.VITE_API_URL}/contact/all`)
+
       .then((res) => {
-        // backend might return { success: true, messages: [...] }
         const msgs = res.data?.messages || res.data || [];
         setMessages(Array.isArray(msgs) ? msgs : []);
       })
       .catch((err) => {
         console.error("loadMessages err:", err);
-        // don't show alert to avoid interrupting seller usage
       });
   };
 
@@ -119,7 +116,9 @@ export default function SellerDashboard() {
           <li><a href="#addfood">➕ Add Food</a></li>
           <li><a href="#foods">🍽 Food Items</a></li>
           <li><a href="#messages">📩 Messages</a></li>
-          <li className="clickable" onClick={() => navigate("/sellerOrders")}>📦 Seller Orders</li>
+          <li className="clickable" onClick={() => navigate("/sellerOrders")}>
+            📦 Seller Orders
+          </li>
         </ul>
 
         <button
@@ -212,10 +211,10 @@ export default function SellerDashboard() {
             <table className="msg-table">
               <thead>
                 <tr>
-                  <th style={{width: '18%'}}>Name</th>
-                  <th style={{width: '22%'}}>Email</th>
+                  <th style={{ width: "18%" }}>Name</th>
+                  <th style={{ width: "22%" }}>Email</th>
                   <th>Message</th>
-                  <th style={{width: '18%'}}>Date</th>
+                  <th style={{ width: "18%" }}>Date</th>
                 </tr>
               </thead>
 

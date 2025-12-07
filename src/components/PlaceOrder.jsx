@@ -25,8 +25,9 @@ export default function PlaceOrder() {
   }
 
   try {
-    const res = await axios.post(
-      "http://localhost:9000/order/place",
+    const res = await axios.post(`${import.meta.env.VITE_API_URL}/order/place`, data,
+
+
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );

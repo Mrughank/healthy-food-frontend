@@ -4,7 +4,7 @@ import { useAuth } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
 import "./UserLogin.css";
 
-const BASE_URL = "http://localhost:9000";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 export default function UserLogin() {
   const { login } = useAuth();
@@ -19,10 +19,12 @@ export default function UserLogin() {
     setLoading(true);
 
     try {
-      const res = await axios.post(`${BASE_URL}/user/login`, {
-        username,
-        userpassword,
-      });
+      axios.post(`${BASE_URL}/user/login`, {
+  username,
+  userpassword,
+});
+
+
 
       const data = res.data;
 

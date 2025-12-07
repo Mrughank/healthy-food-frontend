@@ -10,8 +10,8 @@ export default function SellerOrders() {
   useEffect(() => {
     if (!seller) return;
 
-    axios
-      .get(`http://localhost:9000/order/seller/${seller._id}`, {
+   axios.get(`${import.meta.env.VITE_API_URL}/order/seller/${seller._id}`,
+     {
         headers: {
           Authorization: `Bearer ${sellerToken}`
         }
