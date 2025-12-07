@@ -11,28 +11,29 @@ export default function SellerLogin() {
   const navigate = useNavigate();
   const { loginSeller } = useAuth();
 
-  const handleSellerLogin = async (e) => {
+ const handleSellerLogin = async (e) => {
   e.preventDefault();
 
   try {
-    const res = await axios.post(`${import.meta.env.VITE_API_URL}/seller/login`, data,
-
- {
-      username,
-      userpassword,
-    });
+    const res = await axios.post(
+      `${import.meta.env.VITE_API_URL}/seller/login`,
+      {
+        username,
+        userpassword,
+      }
+    );
 
     if (!res.data.success) {
       alert(res.data.msg || "Invalid login ❌");
       return;
     }
 
-    // Save token & seller info
     loginSeller(res.data.seller, res.data.token);
-
     alert("Seller Login Successful ✅");
     navigate("/sellerDashboard");
+
   } catch (err) {
+    console.log(err.response?.data || err.message);
     alert("Server Error ❌");
   }
 };

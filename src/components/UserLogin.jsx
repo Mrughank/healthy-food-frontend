@@ -19,10 +19,11 @@ export default function UserLogin() {
     setLoading(true);
 
     try {
-      axios.post(`${BASE_URL}/user/login`, {
-  username,
-  userpassword,
-});
+      const res = await axios.post(`${BASE_URL}/user/login`, {
+        username,
+        userpassword,
+      });
+
 
 
 

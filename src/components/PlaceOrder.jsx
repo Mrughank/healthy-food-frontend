@@ -10,30 +10,20 @@ export default function PlaceOrder() {
   const { token } = useAuth();
   const navigate = useNavigate();
 
-  const total =
-    cart.items?.reduce(
-      (sum, item) => sum + item.qty * (item.foodId?.foodsprice || 0),
-      0
-    ) || 0;
-
   const placeOrder = async () => {
-  console.log("TOKEN FOUND:", token);
-
   if (!token) {
-    alert("❌ User NOT logged in — token missing");
+    alert("❌ User NOT logged in");
     return;
   }
 
   try {
-    const res = await axios.post(`${import.meta.env.VITE_API_URL}/order/place`, data,
-
-
+    const res = await axios.post(
+      `${import.meta.env.VITE_API_URL}/order/place`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
 
-    console.log("ORDER RESPONSE:", res.data);
-    alert("Order placed successfully!");
+    alert("Order placed successfully ✅");
     clearCart();
     navigate("/");
 
@@ -42,6 +32,7 @@ export default function PlaceOrder() {
     alert(err.response?.data?.msg || "Order failed");
   }
 };
+
 
 
   return (

@@ -11,27 +11,30 @@ export default function UserRegister() {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    axios.get(`${import.meta.env.VITE_API_URL}/order/userOrders/${user._id}`,
-       {
-        name: username,          // backend expects name
-        password: userpassword,  // backend expects password
-        email: email,            // same
-        phone: mobile            // backend expects phone
-      })
-      .then((res) => {
-        if (res.data.success) {
-          alert("✅ Registration successful!");
-          navigate("/userLogin");
-        } else {
-          alert("❌ " + res.data.msg);
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/user/register`,
+        {
+          username,        // ✅ correct field
+          userpassword,    // ✅ correct field
+          email,
+          phone: mobile,   // ✅ backend expects phone
         }
-      })
-      .catch(() => {
-        alert("⚠️ Server error");
-      });
+      );
+
+      if (res.data.success) {
+        alert("✅ Registration successful!");
+        navigate("/userLogin");
+      } else {
+        alert("❌ " + res.data.msg);
+      }
+    } catch (err) {
+      console.error("Register error:", err?.response?.data || err.message);
+      alert("⚠️ Server error");
+    }
   };
 
   return (

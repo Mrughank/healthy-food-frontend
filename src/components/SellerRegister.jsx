@@ -9,25 +9,29 @@ export default function SellerRegister() {
   const navigate = useNavigate();
 
   const onSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      const res = await axios.postaxios.post(`${import.meta.env.VITE_API_URL}/seller/register`, data,
-         {
+  try {
+    const res = await axios.post(
+      `${import.meta.env.VITE_API_URL}/seller/register`,
+      {
         username,
         userpassword,
-      });
-
-      if (res.data.success) {
-        alert("Seller Registered ✅");
-        navigate("/sellerLogin");
-      } else {
-        alert("Registration failed ❌");
       }
-    } catch (err) {
-      alert("Server error ❌");
+    );
+
+    if (res.data.success) {
+      alert("Seller Registered ✅");
+      navigate("/sellerLogin");
+    } else {
+      alert("Registration failed ❌");
     }
-  };
+  } catch (err) {
+    console.log(err.response?.data || err.message);
+    alert("Server error ❌");
+  }
+};
+
 
   return (
     <div className="seller-reg-page">
