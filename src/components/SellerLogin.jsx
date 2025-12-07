@@ -31,12 +31,11 @@ export default function SellerLogin() {
     loginSeller(res.data.seller, res.data.token);
     alert("Seller Login Successful ✅");
     navigate("/sellerDashboard");
-
   } catch (err) {
-    console.log(err.response?.data || err.message);
     alert("Server Error ❌");
   }
 };
+
 
 
   return (

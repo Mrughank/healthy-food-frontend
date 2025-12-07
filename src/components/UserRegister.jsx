@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./UserRegister.css";
 
 export default function UserRegister() {
@@ -32,7 +32,7 @@ export default function UserRegister() {
         alert("❌ " + res.data.msg);
       }
     } catch (err) {
-      console.log("Register error:", err.response?.data || err.message);
+      console.log(err);
       alert("⚠️ Server error");
     }
   };

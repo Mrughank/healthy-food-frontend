@@ -10,7 +10,7 @@ export default function PlaceOrder() {
   const { token } = useAuth();
   const navigate = useNavigate();
 
-  const placeOrder = async () => {
+const placeOrder = async () => {
   if (!token) {
     alert("❌ User NOT logged in");
     return;
@@ -20,18 +20,19 @@ export default function PlaceOrder() {
     const res = await axios.post(
       `${import.meta.env.VITE_API_URL}/order/place`,
       {},
-      { headers: { Authorization: `Bearer ${token}` } }
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
     );
 
-    alert("Order placed successfully ✅");
+    alert("Order placed successfully!");
     clearCart();
     navigate("/");
-
   } catch (err) {
-    console.log("ORDER ERROR:", err.response?.data || err);
     alert(err.response?.data?.msg || "Order failed");
   }
 };
+
 
 
 
