@@ -1,85 +1,64 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
-import "./UserRegister.css";
+import "./SellerRegister.css";
+import { useNavigate } from "react-router-dom";
 
-export default function UserRegister() {
+export default function SellerRegister() {
   const [username, setUsername] = useState("");
   const [userpassword, setUserpassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [mobile, setMobile] = useState("");
-
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const onSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-      const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/user/register`,   // ✅ CORRECT API
-        {
-          name: username,          // ✅ backend expects name
-          password: userpassword,  // ✅ backend expects password
-          email: email,
-          phone: mobile
-        }
-      );
-
-      if (res.data.success) {
-        alert("✅ Registration successful!");
-        navigate("/userLogin");
-      } else {
-        alert("❌ " + res.data.msg);
+  try {
+    const res = await axios.post(
+      `${import.meta.env.VITE_API_URL}/seller/register`,
+      {
+        username,
+        userpassword,
       }
-    } catch (err) {
-      console.log("Register error:", err.response?.data || err);
-      alert("⚠️ Server error");
+    );
+
+    if (res.data.success) {
+      alert("Seller Registered ✅");
+      navigate("/sellerLogin");
+    } else {
+      alert("Registration failed ❌");
     }
-  };
+  } catch (err) {
+    console.log(err.response?.data || err.message);
+    alert("Server error ❌");
+  }
+};
+
 
   return (
-    <div className="register-container">
-      <form className="register-card" onSubmit={handleSubmit}>
-        <h2>User Register</h2>
+    <div className="seller-reg-page">
+      <form className="seller-reg-card" onSubmit={onSubmit}>
+        <h2>Create Seller Account</h2>
 
         <input
           type="text"
-          placeholder="Enter Username"
+          placeholder="Seller Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
         />
 
         <input
-          type="email"
-          placeholder="Enter Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-
-        <input
-          type="text"
-          placeholder="Enter Mobile Number"
-          value={mobile}
-          onChange={(e) => setMobile(e.target.value)}
-          required
-        />
-
-        <input
           type="password"
-          placeholder="Enter Password"
+          placeholder="Password"
           value={userpassword}
           onChange={(e) => setUserpassword(e.target.value)}
           required
         />
 
-        <button type="submit" className="register-btn">
-          Register
-        </button>
+        <button type="submit" className="reg-btn">Register</button>
 
-        <p>
-          Already have an account? <Link to="/userLogin">Login</Link>
+        <p className="login-link">
+          Already Have Account?{" "}
+          <span onClick={() => navigate("/sellerLogin")}>Login</span>
         </p>
       </form>
     </div>
