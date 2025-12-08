@@ -12,30 +12,31 @@ export default function UserRegister() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/user/signup`,  // ✅ CORRECT
-        {
-          username,
-          userpassword,
-          email,
-          phone: mobile,
-        }
-      );
-
-      if (res.data.success) {
-        alert("✅ Registration successful!");
-        navigate("/userLogin");
-      } else {
-        alert("❌ " + res.data.msg);
+  try {
+    const res = await axios.post(
+      `${import.meta.env.VITE_API_URL}/user/signup`,
+      {
+        name: username,           // ✅ REQUIRED BY BACKEND
+        password: userpassword,  // ✅ REQUIRED BY BACKEND
+        email,
+        phone: mobile,
       }
-    } catch (err) {
-      console.log("Register error:", err.response?.data || err);
-      alert("⚠️ Server error");
+    );
+
+    if (res.data.success) {
+      alert("✅ Registration successful!");
+      navigate("/userLogin");
+    } else {
+      alert("❌ " + res.data.msg);
     }
-  };
+  } catch (err) {
+    console.log("Register error:", err.response?.data || err);
+    alert("⚠️ Server error");
+  }
+};
+
 
   return (
     <div className="register-container">
