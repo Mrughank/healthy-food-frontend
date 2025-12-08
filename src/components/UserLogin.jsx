@@ -19,32 +19,23 @@ export default function UserLogin() {
     setLoading(true);
 
     try {
-      const res = await axios.post(`${BASE_URL}/user/login`, {
+      const res = await axios.post(`${BASE_URL}/login`, {   // ✅ FIXED ROUTE
         username,
         userpassword,
       });
 
-
-
-
       const data = res.data;
 
-      if (data && data.success) {
-        const token = data.token;
-        const userPayload = data.user;
-
-        login(userPayload, token);
-
-        alert("Login successful");
+      if (data.success) {
+        login(data.user, data.token);
+        alert("✅ Login successful");
         navigate("/menu");
       } else {
-        alert(data.msg || "Login failed");
+        alert(data.msg || "❌ Login failed");
       }
     } catch (err) {
       console.error("Login error:", err?.response?.data || err.message);
-      const msg =
-        err?.response?.data?.msg || "Server error. Make sure backend is running.";
-      alert(msg);
+      alert(err?.response?.data?.msg || "Server error");
     } finally {
       setLoading(false);
     }
