@@ -16,7 +16,7 @@ export default function UserRegister() {
 
     try {
       const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/register`,   // ✅ FIXED ROUTE
+        `${import.meta.env.VITE_API_URL}/user/signup`,  // ✅ CORRECT
         {
           username,
           userpassword,
