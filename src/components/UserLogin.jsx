@@ -19,13 +19,11 @@ export default function UserLogin() {
     setLoading(true);
 
     try {
-      const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/user/login`,
-        {
-          username,
-          userpassword,
-        }
-      );
+      const res = await axios.post(`${VITE_API_URL}/user/login`, {
+        username,
+        userpassword,
+      });
+
 
 
       const data = res.data;
