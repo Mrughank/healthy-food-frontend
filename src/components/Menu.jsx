@@ -9,12 +9,15 @@ export default function Menu() {
   const { addToCart } = useCart();
   const { user } = useAuth();
   const navigate = useNavigate();
-  const [foods, setFoods] = useState([]);
+  const [foods, setFoods] = useState([]); // ✅ MUST be array
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API_URL}/seller/food/all`)
-
-      .then((res) => setFoods(res.data))
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/seller/food/all`)
+      .then((res) => {
+        // ✅ FIX: pick only ARRAY from response
+        setFoods(res.data.foods || []); 
+      })
       .catch((err) => console.log(err));
   }, []);
 
@@ -22,7 +25,7 @@ export default function Menu() {
     if (!user) return navigate("/userlogin");
 
     const result = await addToCart(item._id);
-    if (result.success) alert("Added to cart!");
+    if (result?.success) alert("Added to cart!");
   };
 
   return (
@@ -30,15 +33,16 @@ export default function Menu() {
       <h2 className="menu-title">Healthy Menu</h2>
 
       <div className="menu-list">
-        {foods.map((item) => (
-          <div key={item._id} className="food-card">
-            <img src={item.foodsimage} alt="" />
-            <h3>{item.foodsname}</h3>
-            <p>₹{item.foodsprice}</p>
+        {Array.isArray(foods) &&
+          foods.map((item) => (
+            <div key={item._id} className="food-card">
+              <img src={item.foodsimage} alt="" />
+              <h3>{item.foodsname}</h3>
+              <p>₹{item.foodsprice}</p>
 
-            <button onClick={() => handleAdd(item)}>Add to Cart</button>
-          </div>
-        ))}
+              <button onClick={() => handleAdd(item)}>Add to Cart</button>
+            </div>
+          ))}
       </div>
     </div>
   );
