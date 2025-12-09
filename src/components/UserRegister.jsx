@@ -18,10 +18,10 @@ export default function UserRegister() {
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/user/signup`,
         {
-          name: username,          // ✅ must be "name"
-          password: userpassword, // ✅ must be "password"
+          name: username,
+          password: userpassword,
           email,
-          phone: mobile           // ✅ must be "phone"
+          phone: mobile,
         }
       );
 
@@ -37,43 +37,22 @@ export default function UserRegister() {
     }
   };
 
-
   return (
     <div className="register-container">
       <form className="register-card" onSubmit={handleSubmit}>
         <h2>User Register</h2>
 
-        <input
-          type="text"
-          placeholder="Enter Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
+        <input type="text" placeholder="Enter Username" value={username}
+          onChange={(e) => setUsername(e.target.value)} required />
 
-        <input
-          type="email"
-          placeholder="Enter Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+        <input type="email" placeholder="Enter Email" value={email}
+          onChange={(e) => setEmail(e.target.value)} required />
 
-        <input
-          type="text"
-          placeholder="Enter Mobile Number"
-          value={mobile}
-          onChange={(e) => setMobile(e.target.value)}
-          required
-        />
+        <input type="text" placeholder="Enter Mobile Number" value={mobile}
+          onChange={(e) => setMobile(e.target.value)} required />
 
-        <input
-          type="password"
-          placeholder="Enter Password"
-          value={userpassword}
-          onChange={(e) => setUserpassword(e.target.value)}
-          required
-        />
+        <input type="password" placeholder="Enter Password" value={userpassword}
+          onChange={(e) => setUserpassword(e.target.value)} required />
 
         <button type="submit" className="register-btn">Register</button>
 

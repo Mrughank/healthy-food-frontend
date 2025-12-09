@@ -4,8 +4,6 @@ import { useAuth } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
 import "./UserLogin.css";
 
-const BASE_URL = import.meta.env.VITE_API_URL;
-
 export default function UserLogin() {
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -21,10 +19,7 @@ export default function UserLogin() {
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/user/login`,
-        {
-          username,      // ✅ must be "username"
-          userpassword   // ✅ must be "userpassword"
-        }
+        { username, userpassword }
       );
 
       const data = res.data;
@@ -49,25 +44,13 @@ export default function UserLogin() {
       <div className="login-box">
         <h2>User Login</h2>
         <form onSubmit={submit}>
-          <input
-            type="text"
-            placeholder="Enter Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
+          <input type="text" placeholder="Enter Username"
+            value={username} onChange={(e) => setUsername(e.target.value)} required />
 
-          <input
-            type="password"
-            placeholder="Enter Password"
-            value={userpassword}
-            onChange={(e) => setUserpassword(e.target.value)}
-            required
-          />
+          <input type="password" placeholder="Enter Password"
+            value={userpassword} onChange={(e) => setUserpassword(e.target.value)} required />
 
-          <button type="submit">
-            {loading ? "Logging in..." : "Login"}
-          </button>
+          <button type="submit">{loading ? "Logging in..." : "Login"}</button>
         </form>
 
         <p>
