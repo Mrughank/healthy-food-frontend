@@ -15,13 +15,15 @@ export default function UserRegister() {
     e.preventDefault();
 
     try {
-      const res = axios.post(`${VITE_API_URL}/user/signup`, {
-        name: username,
-        password: userpassword,
-        email,
-        phone: mobile,
-      });
-
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/user/signup`,
+        {
+          name: username,          // ✅ must be "name"
+          password: userpassword, // ✅ must be "password"
+          email,
+          phone: mobile           // ✅ must be "phone"
+        }
+      );
 
       if (res.data.success) {
         alert("✅ Registration successful!");
@@ -31,7 +33,7 @@ export default function UserRegister() {
       }
     } catch (err) {
       console.log("Register error:", err.response?.data || err);
-      alert("⚠️ Server error");
+      alert(err.response?.data?.msg || "⚠️ Server error");
     }
   };
 
