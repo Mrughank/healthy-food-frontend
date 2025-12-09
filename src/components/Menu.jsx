@@ -15,11 +15,11 @@ export default function Menu() {
     axios
       .get(`${import.meta.env.VITE_API_URL}/seller/food/all`)
       .then((res) => {
-        // ✅ FIX: pick only ARRAY from response
-        setFoods(res.data.foods || []); 
+        setFoods(res.data); // ✅ FINAL FIX
       })
       .catch((err) => console.log(err));
   }, []);
+
 
   const handleAdd = async (item) => {
     if (!user) return navigate("/userlogin");
