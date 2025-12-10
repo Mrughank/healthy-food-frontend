@@ -77,3 +77,37 @@
 .remove-btn:hover {
   background: #a31e1e !important;
 }
+/* ✅ MOBILE RESPONSIVE FIX */
+@media (max-width: 600px) {
+
+  .cart-page {
+    padding: 10px;
+  }
+
+  .cart-item {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .cart-img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+  }
+
+  .cart-info {
+    text-align: center;
+  }
+
+  .cart-actions {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .placeorder-btn,
+  .clear-btn {
+    width: 100%;
+  }
+}

@@ -6,35 +6,37 @@ import { useNavigate } from "react-router-dom";
 import "./PlaceOrder.css";
 
 export default function PlaceOrder() {
-  const { cart, clearCart, fetchCart } = useCart();
+  const { cart, clearCart } = useCart();
   const { token } = useAuth();
   const navigate = useNavigate();
 
-const placeOrder = async () => {
-  if (!token) {
-    alert("❌ User NOT logged in");
-    return;
-  }
+  // ✅ TOTAL FIX
+  const total =
+    cart.items?.reduce(
+      (sum, item) => sum + item.qty * item.foodId?.foodsprice,
+      0
+    ) || 0;
 
-  try {
-    const res = await axios.post(
-      `${import.meta.env.VITE_API_URL}/order/place`,
-      {},
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
+  const placeOrder = async () => {
+    if (!token) {
+      alert("❌ User NOT logged in");
+      return;
+    }
 
-    alert("Order placed successfully!");
-    clearCart();
-    navigate("/");
-  } catch (err) {
-    alert(err.response?.data?.msg || "Order failed");
-  }
-};
+    try {
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/order/place`,
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
 
-
-
+      alert("✅ Order placed successfully!");
+      clearCart();
+      navigate("/");
+    } catch (err) {
+      alert(err.response?.data?.msg || "❌ Order failed");
+    }
+  };
 
   return (
     <div className="placeorder-page">
@@ -49,6 +51,7 @@ const placeOrder = async () => {
           </div>
         ))}
 
+        {/* ✅ TOTAL NOW WORKS */}
         <div className="total-box">Total: ₹{total}</div>
 
         <button className="confirm-btn" onClick={placeOrder}>
