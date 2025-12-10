@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useCart } from "./CartContext";
 import axios from "axios";
 import { useAuth } from "./AuthContext";
@@ -6,9 +6,10 @@ import { useNavigate } from "react-router-dom";
 import "./PlaceOrder.css";
 
 export default function PlaceOrder() {
-  const { cart, clearCart } = useCart();
+  const { cart } = useCart();
   const { token } = useAuth();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const total =
     cart.items?.reduce(
@@ -17,7 +18,14 @@ export default function PlaceOrder() {
     ) || 0;
 
   const placeOrder = async () => {
+    if (cart.items.length === 0) {
+      alert("❌ Cart is empty");
+      return;
+    }
+
     try {
+      setLoading(true);
+
       await axios.post(
         `${import.meta.env.VITE_API_URL}/order/place`,
         {},
@@ -25,31 +33,39 @@ export default function PlaceOrder() {
       );
 
       alert("✅ Order Placed Successfully");
-      clearCart();          // ✅ clear cart after order
-      navigate("/");        // ✅ redirect to HOME
+
+      // ✅ Redirect to Home after success
+      navigate("/");
 
     } catch (err) {
-      console.log(err);
+      console.log(err?.response?.data || err);
       alert("❌ Order Failed");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="placeorder-page">
       <div className="order-box">
-        <h2>Your Order</h2>
+        <h2>Your Order Summary</h2>
 
-        {cart.items?.map((item) => (
+        {cart.items.map((item) => (
           <div className="order-item" key={item.itemId}>
             <h3>{item.foodId.foodsname}</h3>
-            <p>₹{item.foodId.foodsprice} × {item.qty}</p>
+            <p>Price: ₹{item.foodId.foodsprice}</p>
+            <p>Qty: {item.qty}</p>
           </div>
         ))}
 
-        <h3 className="total-box">Total: ₹{total}</h3>
+        <div className="total-box">Total: ₹{total}</div>
 
-        <button className="confirm-btn" onClick={placeOrder}>
-          Confirm Order
+        <button
+          className="confirm-btn"
+          onClick={placeOrder}
+          disabled={loading}
+        >
+          {loading ? "Processing..." : "Confirm Order"}
         </button>
       </div>
     </div>
