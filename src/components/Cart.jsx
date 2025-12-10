@@ -8,15 +8,19 @@ export default function Cart() {
   const navigate = useNavigate();
 
   if (!cart.items || cart.items.length === 0)
-    return <h2>Your Cart is Empty</h2>;
+    return <h2 className="empty-cart">Your Cart is Empty</h2>;
 
   return (
     <div className="cart-page">
-      <h2>Your Cart</h2>
+      <h2 className="cart-title">Your Cart</h2>
 
       {cart.items.map((item) => (
         <div className="cart-item" key={item.itemId}>
-          <img src={item.foodId.foodsimage} className="cart-img" />
+          <img
+            src={item.foodId.foodsimage}
+            className="cart-img"
+            alt={item.foodId.foodsname}
+          />
 
           <div className="cart-info">
             <h3>{item.foodId.foodsname}</h3>
@@ -27,13 +31,31 @@ export default function Cart() {
           <div className="cart-actions">
             <button onClick={() => updateQty(item.itemId, "inc")}>+</button>
             <button onClick={() => updateQty(item.itemId, "dec")}>-</button>
-            <button onClick={() => removeItem(item.itemId)}>Remove</button>
+
+            {/* ✅ FIXED REMOVE BUTTON */}
+            <button
+              className="remove-btn"
+              onClick={() => removeItem(item.itemId)}
+            >
+              Remove
+            </button>
           </div>
         </div>
       ))}
 
-      <button onClick={clearCart}>Clear Cart</button>
-      <button onClick={() => navigate("/placeorder")}>Place Order</button>
+      {/* ✅ FIXED BUTTON CONTAINER */}
+      <div className="cart-buttons">
+        <button className="clear-btn" onClick={clearCart}>
+          Clear Cart
+        </button>
+
+        <button
+          className="placeorder-btn"
+          onClick={() => navigate("/placeorder")}
+        >
+          Place Order
+        </button>
+      </div>
     </div>
   );
 }
