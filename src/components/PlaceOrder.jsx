@@ -10,7 +10,7 @@ export default function PlaceOrder() {
   const { token } = useAuth();
   const navigate = useNavigate();
 
-  // ✅ TOTAL FIX
+  // ✅ FIX: DEFINE TOTAL
   const total =
     cart.items?.reduce(
       (sum, item) => sum + item.qty * item.foodId?.foodsprice,
@@ -19,7 +19,7 @@ export default function PlaceOrder() {
 
   const placeOrder = async () => {
     if (!token) {
-      alert("❌ User NOT logged in");
+      alert("❌ User not logged in");
       return;
     }
 
@@ -27,7 +27,9 @@ export default function PlaceOrder() {
       await axios.post(
         `${import.meta.env.VITE_API_URL}/order/place`,
         {},
-        { headers: { Authorization: `Bearer ${token}` } }
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
       );
 
       alert("✅ Order placed successfully!");
@@ -51,7 +53,6 @@ export default function PlaceOrder() {
           </div>
         ))}
 
-        {/* ✅ TOTAL NOW WORKS */}
         <div className="total-box">Total: ₹{total}</div>
 
         <button className="confirm-btn" onClick={placeOrder}>

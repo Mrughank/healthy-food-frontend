@@ -58,21 +58,20 @@ export const CartProvider = ({ children }) => {
   };
 
   // ---------------- UPDATE QTY (+ / - ) ----------------
-  const updateQty = async (itemId, type) => {
-    try {
-const res = await axios.put(
-  `${import.meta.env.VITE_API_URL}/cart/update`,
-  { itemId, type },
-  { headers: { Authorization: `Bearer ${token}` } }
-);
+ const updateQty = async (itemId, type) => {
+  try {
+    const res = await axios.put(
+      `${import.meta.env.VITE_API_URL}/cart/update/${itemId}`,   // ✅ FIXED HERE
+      { type },                                                 // ✅ SEND ONLY TYPE
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
 
+    setCart(res.data.cart);
+  } catch (err) {
+    console.log("updateQty error:", err?.response?.data || err);
+  }
+};
 
-
-      setCart(res.data.cart);
-    } catch (err) {
-      console.log("updateQty error:", err?.response?.data || err);
-    }
-  };
 
   // ---------------- REMOVE ITEM ----------------
   const removeItem = async (itemId) => {
