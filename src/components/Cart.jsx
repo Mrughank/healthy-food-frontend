@@ -8,8 +8,7 @@ export default function Cart() {
   const navigate = useNavigate();
 
   if (loading) return <h2 className="empty-cart">Loading...</h2>;
-  if (!cart.items || cart.items.length === 0)
-    return <h2 className="empty-cart">Your Cart is Empty</h2>;
+  if (!cart.items.length) return <h2 className="empty-cart">Your Cart is Empty</h2>;
 
   return (
     <div className="cart-page">
@@ -17,7 +16,6 @@ export default function Cart() {
 
       {cart.items.map((item) => (
         <div className="cart-item" key={item.itemId}>
-          
           <img
             src={item.foodId?.foodsimage}
             alt={item.foodId?.foodsname}
@@ -37,16 +35,12 @@ export default function Cart() {
               Remove
             </button>
           </div>
-
         </div>
       ))}
 
       <button className="clear-btn" onClick={clearCart}>Clear Cart</button>
 
-      <button
-        className="placeorder-btn"
-        onClick={() => navigate("/placeorder")}
-      >
+      <button className="placeorder-btn" onClick={() => navigate("/placeorder")}>
         Place Order
       </button>
     </div>

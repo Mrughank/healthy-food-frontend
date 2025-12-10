@@ -2,40 +2,31 @@ import React from "react";
 import { useCart } from "./CartContext";
 import axios from "axios";
 import { useAuth } from "./AuthContext";
-import { useNavigate } from "react-router-dom";
 import "./PlaceOrder.css";
 
 export default function PlaceOrder() {
-  const { cart, clearCart } = useCart();
+  const { cart } = useCart();
   const { token } = useAuth();
-  const navigate = useNavigate();
 
-  // ✅ FIX: DEFINE TOTAL
- const total = cart.items.reduce((sum, item) => {
-  return sum + item.food.price * item.qty;
-}, 0);
-
+  const total =
+    cart.items?.reduce(
+      (sum, item) => sum + item.qty * item.foodId?.foodsprice,
+      0
+    ) || 0;
 
   const placeOrder = async () => {
-    if (!token) {
-      alert("❌ User not logged in");
-      return;
-    }
-
     try {
-      await axios.post(
+      const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/order/place`,
         {},
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
 
       alert("✅ Order placed successfully!");
-      clearCart();
-      navigate("/");
+      console.log(res.data);
     } catch (err) {
-      alert(err.response?.data?.msg || "❌ Order failed");
+      console.log(err);
+      alert("❌ Order failed");
     }
   };
 
@@ -45,7 +36,7 @@ export default function PlaceOrder() {
         <h2>Your Order Summary</h2>
 
         {cart.items?.map((item) => (
-          <div className="order-item" key={item._id}>
+          <div className="order-item" key={item.itemId}>
             <h3>{item.foodId?.foodsname}</h3>
             <p>Price: ₹{item.foodId?.foodsprice}</p>
             <p>Qty: {item.qty}</p>

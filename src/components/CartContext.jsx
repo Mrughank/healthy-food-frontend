@@ -9,7 +9,7 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState({ items: [] });
   const [loading, setLoading] = useState(true);
 
-  // ---------------- FETCH CART ----------------
+  // ✅ FETCH CART
   const fetchCart = async () => {
     if (!token) {
       setCart({ items: [] });
@@ -18,14 +18,12 @@ export const CartProvider = ({ children }) => {
     }
 
     try {
-   const res = await axios.get(
-  `${import.meta.env.VITE_API_URL}/cart`,
-  { headers: { Authorization: `Bearer ${token}` } }
-);
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_URL}/cart`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
 
-
-
-      setCart(res.data.cart);
+      setCart(res.data.cart || { items: [] });
     } catch (err) {
       console.log("fetch cart error:", err?.response?.data || err);
     }
@@ -37,72 +35,63 @@ export const CartProvider = ({ children }) => {
     fetchCart();
   }, [token]);
 
-  // ---------------- ADD TO CART ----------------
+  // ✅ ADD TO CART
   const addToCart = async (foodId) => {
-    if (!token) return { success: false, msg: "Please login first" };
-
     try {
-   const res = await axios.post(
-  `${import.meta.env.VITE_API_URL}/cart/add`,
-  { foodId },
-  { headers: { Authorization: `Bearer ${token}` } }
-);
-
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/cart/add`,
+        { foodId, qty: 1 },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
 
       setCart(res.data.cart);
-      return { success: true };
     } catch (err) {
       console.log("addToCart error:", err?.response?.data || err);
-      return { success: false };
     }
   };
 
-  // ---------------- UPDATE QTY (+ / - ) ----------------
-const updateQty = async (itemId, type) => {
-  try {
-    const res = await axios.put(
-      `${import.meta.env.VITE_API_URL}/cart/update/${itemId}`,
-      { type },
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
+  // ✅ UPDATE QTY
+  const updateQty = async (itemId, type) => {
+    try {
+      const res = await axios.put(
+        `${import.meta.env.VITE_API_URL}/cart/update/${itemId}`,
+        { type },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
 
-    setCart(res.data.cart);
-  } catch (err) {
-    console.log("updateQty error:", err?.response?.data || err);
-  }
-};
+      setCart(res.data.cart);
+    } catch (err) {
+      console.log("updateQty error:", err?.response?.data || err);
+    }
+  };
 
-
-
-
-  // ---------------- REMOVE ITEM ----------------
+  // ✅ REMOVE ITEM
   const removeItem = async (itemId) => {
-  try {
-  const res = await axios.delete(
-  `${import.meta.env.VITE_API_URL}/cart/remove/${itemId}`,
-  { headers: { Authorization: `Bearer ${token}` } }
-);
+    try {
+      const res = await axios.delete(
+        `${import.meta.env.VITE_API_URL}/cart/remove/${itemId}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
 
-    setCart(res.data.cart);
-  } catch (err) {
-    console.log("removeItem error:", err?.response?.data || err);
-  }
-};
+      setCart(res.data.cart);
+    } catch (err) {
+      console.log("removeItem error:", err?.response?.data || err);
+    }
+  };
 
-
-  // ---------------- CLEAR CART ----------------
+  // ✅ CLEAR CART
   const clearCart = async () => {
-  try {
-   const res = await axios.delete(
-  `${import.meta.env.VITE_API_URL}/cart/clear`,
-  { headers: { Authorization: `Bearer ${token}` } }
-);
+    try {
+      const res = await axios.delete(
+        `${import.meta.env.VITE_API_URL}/cart/clear`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
 
-    setCart({ items: [] });
-  } catch (err) {
-    console.log("clearCart error:", err?.response?.data || err);
-  }
-};
+      setCart(res.data.cart);
+    } catch (err) {
+      console.log("clearCart error:", err?.response?.data || err);
+    }
+  };
 
   return (
     <CartContext.Provider
