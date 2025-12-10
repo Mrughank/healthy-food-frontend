@@ -59,3 +59,17 @@
 .confirm-btn:hover {
   background: #256e32;
 }
+@media (max-width: 600px) {
+  .order-box {
+    width: 92%;
+    padding: 18px;
+  }
+
+  .total-box {
+    font-size: 20px;
+  }
+
+  .confirm-btn {
+    font-size: 15px;
+  }
+}
