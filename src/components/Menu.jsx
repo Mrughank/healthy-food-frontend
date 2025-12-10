@@ -13,7 +13,7 @@ export default function Menu() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}/seller/food/all`)
+      .get(`${import.meta.env.VITE_API_URL}/seller/food/food/all`)
       .then((res) => {
         setFoods(res.data); // ✅ FINAL FIX
       })
