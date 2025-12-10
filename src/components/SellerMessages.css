@@ -1,20 +1,65 @@
 .seller-messages-page {
-  padding: 20px;
+  padding: 30px;
+  background: #f4fdf8;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+}
+
+.msg-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.refresh-btn {
+  background: linear-gradient(135deg, #15803d, #22c55e);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.empty-msg {
+  color: #777;
+  font-size: 18px;
 }
 
 .messages-table {
   width: 100%;
   border-collapse: collapse;
   background: white;
-}
-
-.messages-table th,
-.messages-table td {
-  border: 1px solid #ddd;
-  padding: 10px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.08);
 }
 
 .messages-table th {
-  background: #4caf50;
+  background: #15803d;
   color: white;
+  padding: 14px;
+  text-align: left;
+}
+
+.messages-table td {
+  padding: 14px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.msg-cell {
+  max-width: 350px;
+  line-height: 1.5;
+}
+
+.delete-msg-btn {
+  background: linear-gradient(135deg, #b91c1c, #ef4444);
+  color: white;
+  border: none;
+  padding: 7px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
 }
