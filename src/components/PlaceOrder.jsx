@@ -2,6 +2,7 @@ import React from "react";
 import { useCart } from "./CartContext";
 import axios from "axios";
 import { useAuth } from "./AuthContext";
+import './PlaceOrder.css'
 
 export default function PlaceOrder() {
   const { cart } = useCart();
