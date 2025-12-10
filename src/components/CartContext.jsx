@@ -58,11 +58,11 @@ export const CartProvider = ({ children }) => {
   };
 
   // ---------------- UPDATE QTY (+ / - ) ----------------
- const updateQty = async (itemId, type) => {
+const updateQty = async (itemId, type) => {
   try {
     const res = await axios.put(
-      `${import.meta.env.VITE_API_URL}/cart/update/${itemId}`,   // ✅ FIXED HERE
-      { type },                                                 // ✅ SEND ONLY TYPE
+      `${import.meta.env.VITE_API_URL}/cart/update/${itemId}`, // ✅ MUST HAVE itemId
+      { type },                                               // ✅ ONLY type in body
       { headers: { Authorization: `Bearer ${token}` } }
     );
 
@@ -71,6 +71,7 @@ export const CartProvider = ({ children }) => {
     console.log("updateQty error:", err?.response?.data || err);
   }
 };
+
 
 
   // ---------------- REMOVE ITEM ----------------

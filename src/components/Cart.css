@@ -95,3 +95,45 @@
     gap: 10px;
   }
 }
+@media (max-width: 600px) {
+  .cart-page {
+    padding: 10px;
+  }
+
+  .cart-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .cart-img {
+    width: 180px;
+    height: 180px;
+    margin-bottom: 10px;
+  }
+
+  .cart-info {
+    width: 100%;
+    text-align: center;
+  }
+
+  .cart-actions {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .cart-actions button {
+    width: 70px;
+    font-size: 14px;
+  }
+
+  .remove-btn {
+    width: 100%;
+  }
+
+  .order-box {
+    width: 95%;
+  }
+}

@@ -11,11 +11,10 @@ export default function PlaceOrder() {
   const navigate = useNavigate();
 
   // ✅ FIX: DEFINE TOTAL
-  const total =
-    cart.items?.reduce(
-      (sum, item) => sum + item.qty * item.foodId?.foodsprice,
-      0
-    ) || 0;
+ const total = cart.items.reduce((sum, item) => {
+  return sum + item.food.price * item.qty;
+}, 0);
+
 
   const placeOrder = async () => {
     if (!token) {
