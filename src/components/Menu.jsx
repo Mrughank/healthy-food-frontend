@@ -11,13 +11,17 @@ export default function Menu() {
   const navigate = useNavigate();
   const [foods, setFoods] = useState([]); // ✅ MUST be array
 
-  useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API_URL}/foods`)
-      .then((res) => {
-        setFoods(res.data); // ✅ FINAL FIX
-      })
-      .catch((err) => console.log(err));
-  }, []);
+useEffect(() => {
+  axios
+    .get(`${import.meta.env.VITE_API_URL}/seller/food/all`)
+    .then((res) => {
+      setFoods(Array.isArray(res.data) ? res.data : res.data.foods || []);
+    })
+    .catch((err) => {
+      console.error("Menu API error:", err.response?.data || err.message);
+    });
+}, []);
+
 
 
   const handleAdd = async (item) => {
