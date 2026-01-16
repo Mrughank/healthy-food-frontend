@@ -12,8 +12,7 @@ export default function Menu() {
   const [foods, setFoods] = useState([]); // ✅ MUST be array
 
 useEffect(() => {
-  axios
-    .get(`${import.meta.env.VITE_API_URL}/seller/food/all`)
+ axios.get(`${import.meta.env.VITE_API_URL}/seller/food/all`)
     .then((res) => {
       setFoods(Array.isArray(res.data) ? res.data : res.data.foods || []);
     })
